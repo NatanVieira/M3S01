@@ -42,6 +42,7 @@ namespace Escola.Infra.Database.Mappings {
 
             builder.HasIndex(x => x.Matricula)
                    .IsUnique();
+       
         }
     }
 }

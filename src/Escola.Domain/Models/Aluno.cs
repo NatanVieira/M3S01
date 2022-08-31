@@ -25,5 +25,8 @@ namespace Escola.Domain.Models {
             Email = aluno.Email;
             DataNascimento = aluno.DataNascimento;
         }
+
+        public virtual List<Boletim> Boletins {get; set;}
+        public virtual List<Turma> Turmas {get; set;}
     }
 }

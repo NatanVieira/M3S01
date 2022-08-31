@@ -8,5 +8,8 @@ namespace Escola.Domain.Models{
         public int MateriaId { get; set; }
 
         public int Nota { get; set; }
+
+        public virtual Materia Materia {get; set;}
+        public virtual Boletim Boletim {get; set;}
     }
 }
