@@ -39,6 +39,9 @@ namespace Escola.Infra.Database.Mappings {
             builder.Property(x => x.Matricula)
                    .HasColumnName("Matricula")
                    .HasColumnType("int");
+
+            builder.HasIndex(x => x.Matricula)
+                   .IsUnique();
         }
     }
 }
