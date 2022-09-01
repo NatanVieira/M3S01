@@ -1,4 +1,6 @@
 
+using Escola.Domain.DTO;
+
 namespace Escola.Domain.Models{
 
     public class NotasMaterias {
@@ -11,5 +13,12 @@ namespace Escola.Domain.Models{
 
         public virtual Materia Materia {get; set;}
         public virtual Boletim Boletim {get; set;}
+
+        public NotasMaterias(){}
+        public NotasMaterias(NotasMateriasDTO notasMateriasDTO){
+            Id = notasMateriasDTO.Id;
+            BoletimId = notasMateriasDTO.BoletimId;
+            MateriaId = notasMateriasDTO.MateriaId;
+        }
     }
 }

@@ -10,9 +10,11 @@ namespace Escola.Infra.Database.Repository {
         public AlunoRepository(EscolaDbContexto context){
             _context = context;
         }
-        public void ExcluirAluno(Aluno aluno)
+        public void ExcluirAluno(Guid id)
         {
-            throw new NotImplementedException();
+            Aluno aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
+                _context.Alunos.Remove(aluno);
+                _context.SaveChanges();
         }
 
         public void InserirAluno(Aluno aluno)
@@ -23,12 +25,18 @@ namespace Escola.Infra.Database.Repository {
 
         public Aluno ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            Aluno aluno = _context.Alunos.FirstOrDefault(x => x.Id == id);
+            return aluno;
         }
 
         public IList<Aluno> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _context.Alunos.ToList();
+        }
+
+        public void AlterarAluno(Aluno aluno){
+            _context.Alunos.Update(aluno);
+            _context.SaveChanges();
         }
     }
 }

@@ -28,5 +28,49 @@ namespace Escola.Api.Controllers {
             }
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult Get(){
+            IList<AlunoDTO> alunos;
+            try {
+                alunos = _alunoService.ObterTodos();
+            }
+            catch{
+                return StatusCode(500);
+            }
+            return Ok(alunos.ToList());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById([FromRoute] Guid id){
+            AlunoDTO aluno;
+            try {
+                aluno = _alunoService.ObterPorId(id);
+            }
+            catch{ return StatusCode(500);}
+            return Ok(aluno);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] Guid id){
+            try {
+                _alunoService.ExcluirAluno(id);
+            }
+            catch { return StatusCode(500);}
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put([FromRoute] Guid id,
+                                 [FromBody] AlunoDTO aluno){
+            aluno.Id = id;
+            try{
+            _alunoService.AlterarAluno(aluno); 
+            }
+            catch{
+                return StatusCode(500);
+            }                       
+            return NoContent();
+        }
     }
 }

@@ -9,9 +9,11 @@ namespace Escola.Domain.Interfaces.Repository {
 
         void InserirAluno(Aluno aluno);
 
-        void ExcluirAluno(Aluno aluno);
+        void ExcluirAluno(Guid id);
 
         Aluno ObterPorId(Guid id);
+
+        void AlterarAluno(Aluno aluno);
 
     }
 }

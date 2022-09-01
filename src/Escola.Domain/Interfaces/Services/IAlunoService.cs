@@ -9,8 +9,10 @@ namespace Escola.Domain.Interfaces.Services {
 
         void InserirAluno(AlunoDTO aluno);
 
-        void ExcluirAluno(AlunoDTO aluno);
+        void ExcluirAluno(Guid id);
 
         AlunoDTO ObterPorId(Guid id);
+
+        void AlterarAluno(AlunoDTO alunoDTO);
     }
 }

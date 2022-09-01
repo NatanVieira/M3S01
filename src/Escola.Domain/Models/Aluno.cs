@@ -28,5 +28,13 @@ namespace Escola.Domain.Models {
 
         public virtual List<Boletim> Boletins {get; set;}
         public virtual List<Turma> Turmas {get; set;}
+
+        public void Update(Aluno aluno){
+            Matricula = aluno.Matricula;
+            Nome = aluno.Nome;
+            Sobrenome = aluno.Sobrenome;
+            Email = aluno.Email;
+            DataNascimento = aluno.DataNascimento;           
+        }
     }
 }

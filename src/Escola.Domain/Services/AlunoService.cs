@@ -11,26 +11,35 @@ namespace Escola.Domain.Services {
         public AlunoService (IAlunoRepository alunoRepository){
             _alunoRepository = alunoRepository;
         }
-        public void ExcluirAluno(AlunoDTO aluno)
+        public void ExcluirAluno(Guid id)
         {
-            throw new NotImplementedException();
+            _alunoRepository.ExcluirAluno(id);
         }
 
         public void InserirAluno(AlunoDTO aluno)
         {
             //TODO: Validar se ja consta matricula
-
             _alunoRepository.InserirAluno(new Aluno(aluno));
         }
 
         public AlunoDTO ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return new AlunoDTO(_alunoRepository.ObterPorId(id));
         }
 
         public IList<AlunoDTO> ObterTodos()
         {
-            throw new NotImplementedException();
+            // List<AlunoDTO> alunos = new List<AlunoDTO>;
+            // _alunoRepository.ObterTodos().ToList().ForEach(x => {
+            //     alunos.Add(new AlunoDTO(x));
+            // });
+            return _alunoRepository.ObterTodos().Select(x => new AlunoDTO(x)).ToList();
+        }
+
+        public void AlterarAluno(AlunoDTO aluno){
+            var alunoDb = _alunoRepository.ObterPorId(aluno.Id);
+            alunoDb.Update(new Aluno(aluno));
+            _alunoRepository.AlterarAluno(alunoDb);
         }
     }
 }

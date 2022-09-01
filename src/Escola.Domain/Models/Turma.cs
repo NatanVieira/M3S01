@@ -1,4 +1,6 @@
 
+using Escola.Domain.DTO;
+
 namespace Escola.Domain.Models {
 
     public class Turma {
@@ -7,5 +9,11 @@ namespace Escola.Domain.Models {
         public string Curso { get; set; }
 
         public virtual List<Aluno> Alunos {get; set;}
+
+        public Turma(){}
+        public Turma(TurmaDTO turmaDTO){
+            Id = turmaDTO.Id;
+            Curso = turmaDTO.Curso;
+        }
     }
 }
