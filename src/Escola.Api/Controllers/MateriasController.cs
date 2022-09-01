@@ -1,5 +1,6 @@
 
 
+using Escola.Domain.DTO;
 using Escola.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,14 @@ namespace Escola.Api.Controllers {
                 return Ok(_materiaService.ObterPorNome(name));
             }
             catch{ return StatusCode(500);}
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] MateriaDTO materia){
+            try {
+                _materiaService.InserirMateria(materia);
+                return NoContent();
+            }catch{ return StatusCode(500);}
         }
     }
 }
