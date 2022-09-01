@@ -19,7 +19,7 @@ namespace Escola.Infra.Database.Repository {
 
         public void InserirMateria(Materia materia)
         {
-            throw new NotImplementedException();
+            _context.Materias.Add(materia);
         }
 
         public Materia ObterPorId(int id)

@@ -14,7 +14,6 @@ namespace Escola.Domain.Models {
 
         public Materia(MateriaDTO materiaDTO){
             
-            Id = materiaDTO.Id;
             Nome = materiaDTO.Nome;
         }
     }
