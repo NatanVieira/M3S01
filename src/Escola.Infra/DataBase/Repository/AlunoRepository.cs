@@ -42,5 +42,9 @@ namespace Escola.Infra.Database.Repository {
         public bool ExisteMatricula(int matricula){
             return _context.Alunos.Any(x => x.Matricula == matricula);
         }
+
+        public List<Boletim> GetBoletims(Guid id){
+            return _context.Boletins.Where(b => b.AlunoId == id).ToList();
+        }
     }
 }

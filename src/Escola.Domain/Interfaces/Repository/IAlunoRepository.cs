@@ -17,5 +17,7 @@ namespace Escola.Domain.Interfaces.Repository {
 
         bool ExisteMatricula(int matricula);
 
+        List<Boletim> GetBoletims(Guid id);
+
     }
 }

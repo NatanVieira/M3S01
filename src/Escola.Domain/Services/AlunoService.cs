@@ -46,5 +46,13 @@ namespace Escola.Domain.Services {
             alunoDb.Update(new Aluno(aluno));
             _alunoRepository.AlterarAluno(alunoDb);
         }
+
+        public List<BoletimDTO> GetBoletims(Guid id){
+            List<BoletimDTO> boletins = _alunoRepository.GetBoletims(id).Select(x => new BoletimDTO(x)).ToList();
+            if (boletins.Count != 0)
+                return boletins;
+            else
+                throw new Exception("Não existem boletins para o aluno.");
+        } 
     }
 }

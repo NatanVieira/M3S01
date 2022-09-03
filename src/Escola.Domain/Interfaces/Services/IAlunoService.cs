@@ -14,5 +14,7 @@ namespace Escola.Domain.Interfaces.Services {
         AlunoDTO ObterPorId(Guid id);
 
         void AlterarAluno(AlunoDTO alunoDTO);
+
+        List<BoletimDTO> GetBoletims(Guid id);
     }
 }
