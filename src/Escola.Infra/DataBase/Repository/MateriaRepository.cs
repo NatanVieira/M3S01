@@ -39,5 +39,10 @@ namespace Escola.Infra.Database.Repository {
         {
             return _context.Materias.ToList();
         }
+
+        public void Atualizar(int id, Materia materia){
+            Materia materiaAlterada = this.ObterPorId(id);
+            _context.Update(materiaAlterada);
+        }
     }
 }

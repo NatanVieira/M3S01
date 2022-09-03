@@ -16,7 +16,7 @@ namespace Escola.Domain.Services {
 
         public void ExcluirMateria(int id)
         {
-            if(this.ObterPorId(id) == null){
+            if(this.ObterPorId(id) != null){
                 _materiaRepository.ExcluirMateria(id);
             }
             else
@@ -43,6 +43,13 @@ namespace Escola.Domain.Services {
 
         public List<MateriaDTO> ObterPorNome(string name){
             return _materiaRepository.ObterPorNome(name).Select(x => new MateriaDTO(x)).ToList();
+        }
+
+        public void Atualizar(int id, MateriaDTO materia){
+            if(this.ObterPorId(id) != null)
+                _materiaRepository.Atualizar(id, new Materia(materia));
+            else
+                throw new Exception("ID de matéria não existente");
         }
     }
 }

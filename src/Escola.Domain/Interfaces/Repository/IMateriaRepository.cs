@@ -12,5 +12,7 @@ namespace Escola.Domain.Interfaces.Repository {
         public void ExcluirMateria(int id);
 
         public List<Materia> ObterPorNome(string name);
+
+        public void Atualizar(int id, Materia materia);
     }
 }

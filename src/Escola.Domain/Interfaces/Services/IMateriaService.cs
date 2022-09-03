@@ -12,5 +12,7 @@ namespace Escola.Domain.Interfaces.Services {
         void ExcluirMateria(int id);
 
         List<MateriaDTO> ObterPorNome(string name);
+
+        void Atualizar(int id, MateriaDTO materia);
     }
 }
