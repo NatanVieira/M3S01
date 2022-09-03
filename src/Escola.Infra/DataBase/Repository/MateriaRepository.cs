@@ -14,12 +14,15 @@ namespace Escola.Infra.Database.Repository {
         }
         public void ExcluirMateria(int id)
         {
-            throw new NotImplementedException();
+            Materia materia = this.ObterPorId(id);
+            _context.Remove(materia);
+            _context.SaveChanges();
         }
 
         public void InserirMateria(Materia materia)
         {
             _context.Materias.Add(materia);
+            _context.SaveChanges();
         }
 
         public Materia ObterPorId(int id)

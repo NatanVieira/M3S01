@@ -36,5 +36,13 @@ namespace Escola.Domain.Models {
             Email = aluno.Email;
             DataNascimento = aluno.DataNascimento;           
         }
+
+        public int DevolveIdade(){
+            int idade = DateTime.Now.Year - DataNascimento.Year;
+            if(DateTime.Now.DayOfYear < DataNascimento.DayOfYear){
+                idade = idade - 1;
+            }
+            return idade;
+        }
     }
 }

@@ -20,13 +20,8 @@ namespace Escola.Api.Controllers {
         }
         [HttpPost("inserir")]
         public IActionResult Inserir ([FromBody] AlunoDTO aluno){
-            try{
-                _alunoService.InserirAluno(aluno);
-            }
-            catch{
-                return StatusCode(500);
-            }
-            return Ok();
+            _alunoService.InserirAluno(aluno);
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         [HttpGet]

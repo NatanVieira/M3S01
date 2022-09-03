@@ -38,5 +38,9 @@ namespace Escola.Infra.Database.Repository {
             _context.Alunos.Update(aluno);
             _context.SaveChanges();
         }
+
+        public bool ExisteMatricula(int matricula){
+            return _context.Alunos.Any(x => x.Matricula == matricula);
+        }
     }
 }

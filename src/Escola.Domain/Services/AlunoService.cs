@@ -1,4 +1,5 @@
 using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
@@ -19,6 +20,10 @@ namespace Escola.Domain.Services {
         public void InserirAluno(AlunoDTO aluno)
         {
             //TODO: Validar se ja consta matricula
+            if(_alunoRepository.ExisteMatricula(aluno.Matricula))
+                throw new DuplicadoException("Matrícula já existente");
+            if(new Aluno(aluno).DevolveIdade() < 18)
+                throw new IdadeException("Idade precisa ser maior ou igual a 18 anos.");
             _alunoRepository.InserirAluno(new Aluno(aluno));
         }
 

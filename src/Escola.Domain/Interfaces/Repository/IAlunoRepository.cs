@@ -15,5 +15,7 @@ namespace Escola.Domain.Interfaces.Repository {
 
         void AlterarAluno(Aluno aluno);
 
+        bool ExisteMatricula(int matricula);
+
     }
 }

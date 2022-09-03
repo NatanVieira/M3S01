@@ -45,5 +45,13 @@ namespace Escola.Api.Controllers {
                 return NoContent();
             }catch{ return StatusCode(500);}
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromRoute] int id){
+            try {
+                _materiaService.ExcluirMateria(id);
+                return NoContent();
+            }catch{ return StatusCode(500);}
+        }
     }
 }

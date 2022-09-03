@@ -16,7 +16,11 @@ namespace Escola.Domain.Services {
 
         public void ExcluirMateria(int id)
         {
-            throw new NotImplementedException();
+            if(this.ObterPorId(id) == null){
+                _materiaRepository.ExcluirMateria(id);
+            }
+            else
+                throw new Exception("Id de materia não encontrado.");
         }
 
         public void InserirMateria(MateriaDTO materiaDTO)
