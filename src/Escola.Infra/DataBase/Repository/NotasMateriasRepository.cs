@@ -14,7 +14,9 @@ namespace Escola.Infra.Database.Repository {
         }
         public void ExcluirNotasMaterias(int id)
         {
-            throw new NotImplementedException();
+            NotasMaterias notas = this.ObterPorId(id);
+            _context.NotasMaterias.Remove(notas);
+            _context.SaveChanges();
         }
 
         public void InserirNotasMaterias(NotasMaterias notasMaterias)

@@ -16,7 +16,11 @@ namespace Escola.Domain.Services {
         }
         public void ExcluirNotasMaterias(int id)
         {
-            throw new NotImplementedException();
+            if(_notasRepository.ObterPorId(id) != null){
+                _notasRepository.ExcluirNotasMaterias(id);
+            }
+            else
+                throw new Exception("Nota não localizada");
         }
 
         public void InserirNotasMaterias(NotasMateriasDTO notasMateriasDTO)
@@ -45,5 +49,6 @@ namespace Escola.Domain.Services {
             else
                 throw new Exception("Nota não existente");
         }
+        
     }
 }
