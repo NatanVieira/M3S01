@@ -3,6 +3,7 @@
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 
 namespace Escola.Domain.Services {
 
@@ -20,7 +21,7 @@ namespace Escola.Domain.Services {
 
         public void InserirNotasMaterias(NotasMateriasDTO notasMateriasDTO)
         {
-            throw new NotImplementedException();
+            _notasRepository.InserirNotasMaterias(new NotasMaterias(notasMateriasDTO));
         }
 
         public NotasMateriasDTO ObterPorId(int id)

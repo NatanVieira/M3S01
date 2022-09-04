@@ -20,5 +20,13 @@ namespace Escola.Api.Controllers {
             }catch{ return StatusCode(500);}
 
         }
+
+        [HttpPost]
+        public ActionResult Post([FromBody] NotasMateriasDTO notas){
+            try{
+                _notasService.InserirNotasMaterias(notas);
+                return NoContent();
+            }catch{ return StatusCode(500);}
+        }
     }
 }
