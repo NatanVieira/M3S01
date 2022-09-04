@@ -15,7 +15,9 @@ namespace Escola.Infra.Database.Repository {
 
         public void ExcluirBoletim(int id)
         {
-            throw new NotImplementedException();
+            Boletim boletim = this.ObterPorId(id);
+            _context.Remove(boletim);
+            _context.SaveChanges();
         }
 
         public void InserirBoletim(Boletim boletim)

@@ -15,7 +15,11 @@ public class BoletimService : IBoletimService
 
     public void ExcluirBoletim(int id)
     {
-        throw new NotImplementedException();
+        if(this.ObterPorId(id) != null){
+            _boletimRespository.ExcluirBoletim(id);
+        }
+        else
+            throw new Exception("Boletim Inexistente");
     }
 
     public void InserirBoletim(BoletimDTO boletimDTO)
