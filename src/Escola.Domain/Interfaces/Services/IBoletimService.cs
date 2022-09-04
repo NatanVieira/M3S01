@@ -8,5 +8,6 @@ namespace Escola.Domain.Interfaces.Services {
         BoletimDTO ObterPorId(int id);
         void InserirBoletim(BoletimDTO boletimDTO);
         void ExcluirBoletim(int id);
+        void Atualizar(int id, BoletimDTO boletim);
     }
 }

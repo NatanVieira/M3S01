@@ -21,6 +21,7 @@ namespace Escola.Infra.Database.Repository {
         public void InserirBoletim(Boletim boletim)
         {
             _context.Add(boletim);
+            _context.SaveChanges();
         }
 
         public Boletim ObterPorId(int id)
@@ -31,6 +32,11 @@ namespace Escola.Infra.Database.Repository {
         public List<Boletim> ObterTodos()
         {
             throw new NotImplementedException();
+        }
+
+        public void Atualizar(int id, Boletim boletim){
+            _context.Boletins.Update(boletim);
+            _context.SaveChanges();
         }
     }
 }

@@ -28,5 +28,14 @@ namespace Escola.Api.Controllers {
                 return NoContent();
             }catch{ return StatusCode(500);}
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put([FromRoute] int id,
+                                 [FromBody] BoletimDTO boletim){
+            try{
+                _boletim.Atualizar(id, boletim);
+                return NoContent();
+            }catch{ return StatusCode(500);}
+        }
     }
 }

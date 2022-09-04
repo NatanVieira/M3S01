@@ -36,4 +36,12 @@ public class BoletimService : IBoletimService
     {
         throw new NotImplementedException();
     }
+
+    public void Atualizar(int id, BoletimDTO boletim){
+        if(this.ObterPorId(id) != null){
+            _boletimRespository.Atualizar(id, new Boletim(boletim));
+        }
+        else
+            throw new Exception("Boletim inexistente");
+    }
 }
