@@ -20,5 +20,13 @@ namespace Escola.Api.Controllers {
                 return Ok(_boletim.ObterPorId(id));
             }catch{ return StatusCode(500);}
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] BoletimDTO boletim){
+            try{
+                _boletim.InserirBoletim(boletim);
+                return NoContent();
+            }catch{ return StatusCode(500);}
+        }
     }
 }

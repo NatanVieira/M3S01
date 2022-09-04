@@ -20,7 +20,7 @@ namespace Escola.Infra.Database.Repository {
 
         public void InserirBoletim(Boletim boletim)
         {
-            throw new NotImplementedException();
+            _context.Add(boletim);
         }
 
         public Boletim ObterPorId(int id)

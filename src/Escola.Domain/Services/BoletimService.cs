@@ -1,6 +1,7 @@
 using Escola.Domain.DTO;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
+using Escola.Domain.Models;
 
 namespace Escola.Domain.Services ;
 
@@ -19,7 +20,7 @@ public class BoletimService : IBoletimService
 
     public void InserirBoletim(BoletimDTO boletimDTO)
     {
-        throw new NotImplementedException();
+        _boletimRespository.InserirBoletim(new Boletim(boletimDTO));
     }
 
     public BoletimDTO ObterPorId(int id)
