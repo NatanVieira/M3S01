@@ -53,6 +53,15 @@ namespace Escola.Domain.Services {
                 return boletins;
             else
                 throw new Exception("Não existem boletins para o aluno.");
-        } 
+        }
+
+        public List<NotasMateriasDTO> GetNotas(Guid id, int idBoletim)
+        {
+            List<NotasMateriasDTO> notas = _alunoRepository.GetNotas(id, idBoletim).Select(x => new NotasMateriasDTO(x)).ToList();
+            if(notas.Count != 0)
+                return notas;
+            else
+                throw new Exception("Não existem notas para o aluno/boletim.");
+        }
     }
 }

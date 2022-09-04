@@ -19,5 +19,6 @@ namespace Escola.Domain.Interfaces.Repository {
 
         List<Boletim> GetBoletims(Guid id);
 
+        List<NotasMaterias> GetNotas(Guid id, int idBoletim);
     }
 }

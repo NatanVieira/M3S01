@@ -1,5 +1,6 @@
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Escola.Infra.Database.Repository {
 
@@ -45,6 +46,13 @@ namespace Escola.Infra.Database.Repository {
 
         public List<Boletim> GetBoletims(Guid id){
             return _context.Boletins.Where(b => b.AlunoId == id).ToList();
+        }
+
+        public List<NotasMaterias> GetNotas(Guid id, int idBoletim)
+        {
+            return _context.NotasMaterias
+                           .Include(n => n.Boletim)
+                           .Where(n => n.BoletimId == idBoletim && n.Boletim.AlunoId == id).ToList();
         }
     }
 }

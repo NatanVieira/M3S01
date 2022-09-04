@@ -74,5 +74,13 @@ namespace Escola.Api.Controllers {
                 return Ok(_alunoService.GetBoletims(id));
             }catch{ return StatusCode(500);}
         }
+
+        [HttpGet("{id}/boletins/{idBoletim}/notas")]
+        public ActionResult<NotasMateriasDTO> GetNotas([FromRoute] Guid id,
+                                                       [FromRoute] int idBoletim){
+            try{
+                return Ok(_alunoService.GetNotas(id, idBoletim));
+            }catch{ return StatusCode(500);}
+        }
     }
 }
