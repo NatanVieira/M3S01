@@ -28,5 +28,14 @@ namespace Escola.Api.Controllers {
                 return NoContent();
             }catch{ return StatusCode(500);}
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put([FromRoute] int id,
+                                 [FromBody] NotasMateriasDTO notas){
+            try{
+                _notasService.Atualizar(id, notas);
+                return NoContent();
+            }catch{ return StatusCode(500);}
+        }
     }
 }

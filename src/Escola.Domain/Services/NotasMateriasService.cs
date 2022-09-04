@@ -37,5 +37,13 @@ namespace Escola.Domain.Services {
         {
             throw new NotImplementedException();
         }
+
+        public void Atualizar(int id, NotasMateriasDTO notas){
+            if(_notasRepository.ObterPorId(id) != null){
+                _notasRepository.Atualizar(id, new NotasMaterias(notas));
+            }
+            else
+                throw new Exception("Nota não existente");
+        }
     }
 }

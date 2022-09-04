@@ -10,5 +10,6 @@ namespace Escola.Domain.Interfaces.Repository {
         public NotasMaterias ObterPorId(int id);
         public void InserirNotasMaterias(NotasMaterias notasMaterias);
         public void ExcluirNotasMaterias(int id);
+        public void Atualizar(int id, NotasMaterias notas);
     }
 }

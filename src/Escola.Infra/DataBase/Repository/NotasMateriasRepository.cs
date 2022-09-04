@@ -31,5 +31,8 @@ namespace Escola.Infra.Database.Repository {
         {
             throw new NotImplementedException();
         }
+        public void Atualizar(int id, NotasMaterias notas){
+            _context.NotasMaterias.Update(notas);
+        }
     }
 }
