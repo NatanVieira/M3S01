@@ -1,9 +1,11 @@
 
 
+using Escola.Api.Config;
 using Escola.Domain.DTO;
 using Escola.Domain.Models;
 using Escola.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Escola.Api.Controllers {
 
@@ -12,9 +14,10 @@ namespace Escola.Api.Controllers {
     public class MateriasController : ControllerBase {
         
         private readonly MateriaService _materiaService;
-        
-        public MateriasController (MateriaService materiaService){
+        private readonly CacheService<MateriaDTO>  _cache;
+        public MateriasController (MateriaService materiaService, CacheService<MateriaDTO> cache){
             _materiaService = materiaService;
+            _cache = cache;
         }
         [HttpGet]
         public IActionResult Get(int skip, int take){
@@ -32,7 +35,13 @@ namespace Escola.Api.Controllers {
 
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id){
-            return Ok(_materiaService.ObterPorId(id));
+            //return Ok(_materiaService.ObterPorId(id));
+            MateriaDTO materia;
+            if(!_cache.TryGetValue($"{id}",out materia)){
+                materia = _materiaService.ObterPorId(id);
+                _cache.Set(id.ToString(),materia);
+            }
+            return Ok(materia);
         }
 
         [HttpGet]
@@ -49,6 +58,7 @@ namespace Escola.Api.Controllers {
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id){
             _materiaService.ExcluirMateria(id);
+            _cache.Remove($"{id}");
             return NoContent();
         }
 
@@ -56,6 +66,7 @@ namespace Escola.Api.Controllers {
         public IActionResult Put([FromRoute] int id,
                                  [FromBody] MateriaDTO materia){
             _materiaService.Atualizar(id, materia);
+            _cache.Set($"{id}",materia);
             return NoContent();
         }
     }

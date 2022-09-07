@@ -1,3 +1,4 @@
+using Escola.Api.Config;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Services;
@@ -12,7 +13,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAlunoRepository,AlunoRepository>();
 builder.Services.AddScoped<IAlunoService,AlunoService>();
-
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped(typeof(CacheService<>));
 
 var app = builder.Build();
 app.MapControllers();
