@@ -37,9 +37,9 @@ namespace Escola.Domain.Services {
             return materia;
         }
 
-        public List<MateriaDTO> ObterTodos()
+        public List<MateriaDTO> ObterTodos(Paginacao paginacao)
         {
-            List<MateriaDTO> materias = _materiaRepository.ObterTodos().Select(m => new MateriaDTO(m)).ToList();
+            List<MateriaDTO> materias = _materiaRepository.ObterTodos(paginacao).Select(m => new MateriaDTO(m)).ToList();
             if(!materias.Any())
                 throw new EntidadeNaoEncontradaException("Nenhuma matéria encontrada.");
             return materias;
@@ -56,6 +56,10 @@ namespace Escola.Domain.Services {
             if(this.ObterPorId(id) == null)
                 throw new EntidadeNaoEncontradaException("Matéria não encontrada.");
             _materiaRepository.Atualizar(id, new Materia(materia));
+        }
+
+        public int ObterTotal(){
+            return _materiaRepository.ObterTotal();
         }
     }
 }

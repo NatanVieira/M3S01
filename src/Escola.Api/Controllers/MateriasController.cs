@@ -1,6 +1,7 @@
 
 
 using Escola.Domain.DTO;
+using Escola.Domain.Models;
 using Escola.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +17,17 @@ namespace Escola.Api.Controllers {
             _materiaService = materiaService;
         }
         [HttpGet]
-        public IActionResult Get(){
-            return Ok(_materiaService.ObterTodos());
+        public IActionResult Get(int skip, int take){
+            try{
+                var paginacao = new Paginacao(skip, take);
+                var totalRegistros = _materiaService.ObterTotal();
+
+                Response.Headers.Add("X-Paginacao-TotalRegistros",totalRegistros.ToString());
+                return Ok(_materiaService.ObterTodos(paginacao));
+            }
+            catch{
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpGet("{id}")]

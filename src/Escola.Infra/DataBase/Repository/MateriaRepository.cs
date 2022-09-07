@@ -35,14 +35,21 @@ namespace Escola.Infra.Database.Repository {
             return _context.Materias.Where(x => x.Nome.ToUpper() == name.ToUpper()).ToList();
         }
 
-        public List<Materia> ObterTodos()
+        public List<Materia> ObterTodos(Paginacao paginacao)
         {
-            return _context.Materias.ToList();
+            return _context.Materias
+                           .Skip(paginacao.Skip)
+                           .Take(paginacao.Take)
+                           .ToList();
         }
 
         public void Atualizar(int id, Materia materia){
             Materia materiaAlterada = this.ObterPorId(id);
             _context.Update(materiaAlterada);
+        }
+
+        public int ObterTotal(){
+            return _context.Materias.Count();
         }
     }
 }
