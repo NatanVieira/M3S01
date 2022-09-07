@@ -10,5 +10,9 @@ namespace Escola.Domain.DTO {
         public MateriaDTO(Materia materia){
             Nome = materia.Nome;
         }  
+
+        public MateriaDTO(MateriaV2DTO materia){
+            Nome = materia.Disciplina;
+        }
     }
 }
