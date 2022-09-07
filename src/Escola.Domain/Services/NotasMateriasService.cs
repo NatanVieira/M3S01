@@ -1,6 +1,7 @@
 
 
 using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
@@ -16,11 +17,9 @@ namespace Escola.Domain.Services {
         }
         public void ExcluirNotasMaterias(int id)
         {
-            if(_notasRepository.ObterPorId(id) != null){
-                _notasRepository.ExcluirNotasMaterias(id);
-            }
-            else
-                throw new Exception("Nota não localizada");
+            if(_notasRepository.ObterPorId(id) == null)
+                throw new EntidadeNaoEncontradaException("Nota não encontrada.");
+            _notasRepository.ExcluirNotasMaterias(id);
         }
 
         public void InserirNotasMaterias(NotasMateriasDTO notasMateriasDTO)
@@ -30,24 +29,15 @@ namespace Escola.Domain.Services {
 
         public NotasMateriasDTO ObterPorId(int id)
         {
-            if(_notasRepository.ObterPorId(id) != null){
-                return new NotasMateriasDTO(_notasRepository.ObterPorId(id));
-            }
-            else
-                throw new Exception("Nota Inexistente");
-        }
-
-        public List<NotasMateriasDTO> ObterTodos()
-        {
-            throw new NotImplementedException();
+            if(_notasRepository.ObterPorId(id) == null)
+                throw new EntidadeNaoEncontradaException("Nota não encontrada.");
+            return new NotasMateriasDTO(_notasRepository.ObterPorId(id));
         }
 
         public void Atualizar(int id, NotasMateriasDTO notas){
-            if(_notasRepository.ObterPorId(id) != null){
-                _notasRepository.Atualizar(id, new NotasMaterias(notas));
-            }
-            else
-                throw new Exception("Nota não existente");
+            if(_notasRepository.ObterPorId(id) == null)
+                throw new EntidadeNaoEncontradaException("Nota não encontrada.");
+            _notasRepository.Atualizar(id, new NotasMaterias(notas));
         }
         
     }

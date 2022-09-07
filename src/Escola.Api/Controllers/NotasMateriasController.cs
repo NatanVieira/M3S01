@@ -15,35 +15,26 @@ namespace Escola.Api.Controllers {
         
         [HttpGet("{id}")]
         public ActionResult<NotasMateriasDTO> Get([FromRoute] int id){
-            try{
-                return Ok(_notasService.ObterPorId(id));
-            }catch{ return StatusCode(500);}
-
+            return Ok(_notasService.ObterPorId(id));
         }
 
         [HttpPost]
         public ActionResult Post([FromBody] NotasMateriasDTO notas){
-            try{
-                _notasService.InserirNotasMaterias(notas);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _notasService.InserirNotasMaterias(notas);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute] int id,
                                  [FromBody] NotasMateriasDTO notas){
-            try{
-                _notasService.Atualizar(id, notas);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _notasService.Atualizar(id, notas);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id){
-            try{
-                _notasService.ExcluirNotasMaterias(id);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _notasService.ExcluirNotasMaterias(id);
+            return NoContent();
         }
     }
 }

@@ -28,11 +28,6 @@ namespace Escola.Infra.Database.Repository {
         {
             return _context.NotasMaterias.FirstOrDefault(x => x.Id == id);
         }
-
-        public List<NotasMaterias> ObterTodos()
-        {
-            throw new NotImplementedException();
-        }
         public void Atualizar(int id, NotasMaterias notas){
             _context.NotasMaterias.Update(notas);
         }
