@@ -17,51 +17,36 @@ namespace Escola.Api.Controllers {
         }
         [HttpGet]
         public IActionResult Get(){
-            try {
-                return Ok(_materiaService.ObterTodos().ToList());
-            }
-            catch{ return StatusCode(500);}
+            return Ok(_materiaService.ObterTodos());
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById([FromRoute] int id){
-            try{
-                return Ok(_materiaService.ObterPorId(id));
-            }
-            catch{ return StatusCode(500);}
+            return Ok(_materiaService.ObterPorId(id));
         }
+
         [HttpGet]
         public IActionResult GetByName([FromQuery] string name){
-            try{
-                return Ok(_materiaService.ObterPorNome(name));
-            }
-            catch{ return StatusCode(500);}
+            return Ok(_materiaService.ObterPorNome(name));
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] MateriaDTO materia){
-            try {
-                _materiaService.InserirMateria(materia);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _materiaService.InserirMateria(materia);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id){
-            try {
-                _materiaService.ExcluirMateria(id);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _materiaService.ExcluirMateria(id);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute] int id,
                                  [FromBody] MateriaDTO materia){
-            try{
-                _materiaService.Atualizar(id, materia);
-                return NoContent();
-            }catch{ return StatusCode(500);}
-
+            _materiaService.Atualizar(id, materia);
+            return NoContent();
         }
     }
 }

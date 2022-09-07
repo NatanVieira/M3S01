@@ -37,23 +37,19 @@ namespace Escola.Api.Config {
                     status = HttpStatusCode.NotAcceptable;
                     message = ex.Message;
                     break;
+                case EntidadeJaCadastradaException:
+                    status = HttpStatusCode.NotAcceptable;
+                    message = ex.Message;
+                    break;
+                case EntidadeNaoEncontradaException:
+                    status = HttpStatusCode.NotAcceptable;
+                    message = ex.Message;
+                    break;
                 default:
                     status = HttpStatusCode.InternalServerError;
                     message = "Ocorreu um erro favor contactar a TI."; 
                     break;                   
             }
-            // if(ex is DuplicadoException){
-            //     status = HttpStatusCode.NotAcceptable;
-            //     message = ex.Message;
-            // }
-            // else if(ex is IdadeException){
-            //     status = HttpStatusCode.NotAcceptable;
-            //     message = ex.Message;
-            // }
-            // else {
-            //     status = HttpStatusCode.InternalServerError;
-            //     message = "Ocorreu um erro favor contactar a TI.";
-            // }
 
             var response = new ErrorDTO(message);
 
