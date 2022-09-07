@@ -70,9 +70,7 @@ namespace Escola.Api.Controllers {
 
         [HttpGet("{id}/boletins")]
         public ActionResult<List<BoletimDTO>> GetBoletins([FromRoute] Guid id){
-            try {
-                return Ok(_alunoService.GetBoletims(id));
-            }catch{ return StatusCode(500);}
+            return Ok(_alunoService.GetBoletims(id));
         }
 
         [HttpGet("{id}/boletins/{idBoletim}/notas")]

@@ -49,10 +49,9 @@ namespace Escola.Domain.Services {
 
         public List<BoletimDTO> GetBoletims(Guid id){
             List<BoletimDTO> boletins = _alunoRepository.GetBoletims(id).Select(x => new BoletimDTO(x)).ToList();
-            if (boletins.Count != 0)
-                return boletins;
-            else
-                throw new Exception("Não existem boletins para o aluno.");
+            if (!boletins.Any())
+                throw new EntidadeNaoEncontradaException("Boletins não encontrados.");
+            return boletins;
         }
 
         public List<NotasMateriasDTO> GetNotas(Guid id, int idBoletim)

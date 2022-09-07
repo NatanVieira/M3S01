@@ -1,4 +1,5 @@
 using Escola.Domain.DTO;
+using Escola.Domain.Exceptions;
 using Escola.Domain.Interfaces.Repository;
 using Escola.Domain.Interfaces.Services;
 using Escola.Domain.Models;
@@ -15,11 +16,9 @@ public class BoletimService : IBoletimService
 
     public void ExcluirBoletim(int id)
     {
-        if(this.ObterPorId(id) != null){
-            _boletimRespository.ExcluirBoletim(id);
-        }
-        else
-            throw new Exception("Boletim Inexistente");
+        if(this.ObterPorId(id) == null)
+            throw new EntidadeNaoEncontradaException("Boletim não encontrado.");
+        _boletimRespository.ExcluirBoletim(id);
     }
 
     public void InserirBoletim(BoletimDTO boletimDTO)
@@ -30,22 +29,14 @@ public class BoletimService : IBoletimService
     public BoletimDTO ObterPorId(int id)
     {
         BoletimDTO boletim = new BoletimDTO(_boletimRespository.ObterPorId(id));
-        if(boletim != null)
-            return boletim;
-        else
-            throw new Exception("Id de boletim não encontrado.");
-    }
-
-    public List<BoletimDTO> ObterTodos()
-    {
-        throw new NotImplementedException();
+        if(boletim == null)
+            throw new EntidadeNaoEncontradaException("Boletim não encontrado.");
+        return boletim;
     }
 
     public void Atualizar(int id, BoletimDTO boletim){
-        if(this.ObterPorId(id) != null){
-            _boletimRespository.Atualizar(id, new Boletim(boletim));
-        }
-        else
-            throw new Exception("Boletim inexistente");
+        if(this.ObterPorId(id) == null)
+            throw new EntidadeNaoEncontradaException("Boletim não encontrado.");
+        _boletimRespository.Atualizar(id, new Boletim(boletim));
     }
 }

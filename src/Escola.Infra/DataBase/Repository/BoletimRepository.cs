@@ -31,11 +31,6 @@ namespace Escola.Infra.Database.Repository {
             return _context.Boletins.FirstOrDefault(b => b.Id == id);
         }
 
-        public List<Boletim> ObterTodos()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Atualizar(int id, Boletim boletim){
             _context.Boletins.Update(boletim);
             _context.SaveChanges();

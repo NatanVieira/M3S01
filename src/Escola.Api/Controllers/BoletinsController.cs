@@ -16,34 +16,26 @@ namespace Escola.Api.Controllers {
         
         [HttpGet("{id}")]
         public ActionResult<BoletimDTO> Get([FromRoute] int id){
-            try {
-                return Ok(_boletim.ObterPorId(id));
-            }catch{ return StatusCode(500);}
+            return Ok(_boletim.ObterPorId(id));
         }
 
         [HttpPost]
         public IActionResult Post([FromBody] BoletimDTO boletim){
-            try{
-                _boletim.InserirBoletim(boletim);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _boletim.InserirBoletim(boletim);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromRoute] int id,
                                  [FromBody] BoletimDTO boletim){
-            try{
-                _boletim.Atualizar(id, boletim);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _boletim.Atualizar(id, boletim);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id){
-            try {
-                _boletim.ExcluirBoletim(id);
-                return NoContent();
-            }catch{ return StatusCode(500);}
+            _boletim.ExcluirBoletim(id);
+            return NoContent();
         }
     }
 }
