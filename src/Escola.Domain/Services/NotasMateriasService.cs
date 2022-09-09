@@ -17,14 +17,15 @@ namespace Escola.Domain.Services {
         }
         public void ExcluirNotasMaterias(int id)
         {
-            if(_notasRepository.ObterPorId(id) == null)
+            NotasMateriasDTO notasExcluir = this.ObterPorId(id);
+            if(notasExcluir == null)
                 throw new EntidadeNaoEncontradaException("Nota não encontrada.");
-            _notasRepository.ExcluirNotasMaterias(id);
+            _notasRepository.Excluir(new NotasMaterias(notasExcluir));
         }
 
         public void InserirNotasMaterias(NotasMateriasDTO notasMateriasDTO)
         {
-            _notasRepository.InserirNotasMaterias(new NotasMaterias(notasMateriasDTO));
+            _notasRepository.Inserir(new NotasMaterias(notasMateriasDTO));
         }
 
         public NotasMateriasDTO ObterPorId(int id)
@@ -35,9 +36,10 @@ namespace Escola.Domain.Services {
         }
 
         public void Atualizar(int id, NotasMateriasDTO notas){
-            if(_notasRepository.ObterPorId(id) == null)
+            NotasMateriasDTO notasAtualizar = this.ObterPorId(id);
+            if(notasAtualizar == null)
                 throw new EntidadeNaoEncontradaException("Nota não encontrada.");
-            _notasRepository.Atualizar(id, new NotasMaterias(notas));
+            _notasRepository.Atualizar(new NotasMaterias(notas));
         }
         
     }

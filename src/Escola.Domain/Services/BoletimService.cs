@@ -16,14 +16,15 @@ public class BoletimService : IBoletimService
 
     public void ExcluirBoletim(int id)
     {
-        if(this.ObterPorId(id) == null)
+        BoletimDTO boletimExcluir = this.ObterPorId(id);
+        if(boletimExcluir == null)
             throw new EntidadeNaoEncontradaException("Boletim não encontrado.");
-        _boletimRespository.ExcluirBoletim(id);
+        _boletimRespository.Excluir(new Boletim(boletimExcluir));
     }
 
     public void InserirBoletim(BoletimDTO boletimDTO)
     {
-        _boletimRespository.InserirBoletim(new Boletim(boletimDTO));
+        _boletimRespository.Inserir(new Boletim(boletimDTO));
     }
 
     public BoletimDTO ObterPorId(int id)
@@ -35,8 +36,9 @@ public class BoletimService : IBoletimService
     }
 
     public void Atualizar(int id, BoletimDTO boletim){
-        if(this.ObterPorId(id) == null)
+        BoletimDTO boletimAtualizar = this.ObterPorId(id);
+        if(boletimAtualizar == null)
             throw new EntidadeNaoEncontradaException("Boletim não encontrado.");
-        _boletimRespository.Atualizar(id, new Boletim(boletim));
+        _boletimRespository.Atualizar(new Boletim(boletim));
     }
 }

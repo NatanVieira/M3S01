@@ -7,8 +7,8 @@ namespace Escola.Domain.Interfaces.Repository {
     public interface INotasMateriasRepository {
 
         public NotasMaterias ObterPorId(int id);
-        public void InserirNotasMaterias(NotasMaterias notasMaterias);
-        public void ExcluirNotasMaterias(int id);
-        public void Atualizar(int id, NotasMaterias notas);
+        public void Inserir(NotasMaterias notasMaterias);
+        public void Excluir(NotasMaterias notasMaterias);
+        public void Atualizar(NotasMaterias notas);
     }
 }

@@ -17,16 +17,17 @@ namespace Escola.Domain.Services {
 
         public void ExcluirMateria(int id)
         {
-            if(this.ObterPorId(id) == null)
+            MateriaDTO materiaExcluir = this.ObterPorId(id);
+            if(materiaExcluir == null)
                 throw new EntidadeNaoEncontradaException("Matéria não encontrada.");
-            _materiaRepository.ExcluirMateria(id);
+            _materiaRepository.Excluir(new Materia(materiaExcluir));
         }
 
         public void InserirMateria(MateriaDTO materiaDTO)
         {
             if(this.ObterPorNome(materiaDTO.Nome) != null)
                 throw new EntidadeJaCadastradaException("Matéria já cadastrada.");
-            _materiaRepository.InserirMateria(new Materia(materiaDTO));
+            _materiaRepository.Inserir(new Materia(materiaDTO));
         }
 
         public MateriaDTO ObterPorId(int id)
@@ -53,9 +54,10 @@ namespace Escola.Domain.Services {
         }
 
         public void Atualizar(int id, MateriaDTO materia){
-            if(this.ObterPorId(id) == null)
+            MateriaDTO materiaAtualizar = this.ObterPorId(id);
+            if(materiaAtualizar == null)
                 throw new EntidadeNaoEncontradaException("Matéria não encontrada.");
-            _materiaRepository.Atualizar(id, new Materia(materia));
+            _materiaRepository.Atualizar(new Materia(materiaAtualizar));
         }
 
         public int ObterTotal(){
